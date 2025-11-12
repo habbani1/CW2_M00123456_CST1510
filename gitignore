@@ -4,3 +4,4 @@ __ycache__/
 .env
 .vscode/
 .idea/
+.users.text
