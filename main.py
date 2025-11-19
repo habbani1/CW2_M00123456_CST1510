@@ -1,4 +1,5 @@
 import bcrypt
+import os
 
 password = 'Magic123'
 
@@ -71,6 +72,20 @@ def menu ():
             print("Goodbye!")
             break
 
+import sqlite3
 
-if __name__ == "__main__":
-    menu()
+DB_PATH = 'DATA/telligence_platform.db'
+
+def init_db():
+    # Ensure directory exists
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    conn = sqlite3.connect(DB_PATH)
+    curr = conn.cursor()
+    sql = ("""CREATE TABLE IF NOT EXISTS USERS (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL UNIQUE,
+        password_hash TEXT NOT NULL
+    );""")
+    curr.execute(sql)
+    conn.commit()
+    conn.close()
