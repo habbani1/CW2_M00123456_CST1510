@@ -5,3 +5,4 @@ __ycache__/
 .vscode/
 .idea/
 .users.text
+.database/
